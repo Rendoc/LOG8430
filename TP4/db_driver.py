@@ -1,5 +1,6 @@
 from cassandra.cluster import Cluster
 from cassandra.query import dict_factory
+import json
 
 KEYSPACE = 'factures_keyspace'
 cluster = Cluster()
@@ -28,10 +29,6 @@ def main():
     )
 
 
-if __name__ == "__main__":
-    main()
-
-
 def add_facture(facture):
     session.execute(
         """
@@ -43,5 +40,21 @@ def add_facture(facture):
 
 
 def get_factures():
-    future = session.execute("SELECT * FROM factures")
-    return dict(future)
+    factures = []
+    rows = session.execute("SELECT * FROM factures")
+    for row in rows:
+        factures.append(row)
+    return factures
+
+
+def get_facture(id):
+    factures = []
+    rows = session.execute("SELECT * FROM factures WHERE id = {0}".format(id))
+    for row in rows:
+        factures.append(row)
+    return factures
+
+
+if __name__ == "__main__":
+    main()
+    get_factures()
