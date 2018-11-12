@@ -20,7 +20,6 @@ def get_facture(facture_id):
 @app.route('/factures/', methods=['POST'])
 def create_facture():
     if not request.json or not 'title' in request.json:
-        print(request)
         abort(400)
     factures = db_driver.get_factures()
     facture = {
@@ -28,7 +27,6 @@ def create_facture():
         'title': request.json['title'],
         'articles': request.json['articles']
     }
-    print(facture)
     db_driver.add_facture(facture)
     return jsonify({'facture': facture}), 201
 
