@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/factures/')
 def get():
-    return jsonify({'factures': db_driver.get_factures()})
+    return "allo"#jsonify({'factures': db_driver.get_factures()})
 
 
 @app.route('/factures/<int:facture_id>', methods=['GET'])
