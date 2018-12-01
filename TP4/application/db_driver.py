@@ -14,16 +14,20 @@ factures = db["factures"]
 """ facture = {
     id,
     title,
+    total
     articles : [
-        {id:,name:, qty}, ...
+        {id:,name:, qty, unit_price,product_price_total}, ...
     ]
 } """
 
 
 def add_facture(obj):
     try:
-        facture = {"id": obj["id"], "title": obj["title"],
+        facture = {"id": obj["id"], "title": obj["title"], "total": obj["total"],
                    "articles": obj["articles"]}
+
+        if (factures.find_one({"id": obj["id"]})):
+            return None
         factures.insert_one(facture)
     except Exception as e:
         print(e)

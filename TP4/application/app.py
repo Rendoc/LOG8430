@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, abort, request
+from flask import Flask, jsonify, abort, request, url_for
 import db_driver
 import json
 
@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/factures/')
 def get():
-    return jsonify({'factures': db_driver.get_factures()})
+    return jsonify({'factures': json.loads(db_driver.get_factures())})
 
 
 @app.route('/factures/<int:facture_id>', methods=['GET'])
@@ -23,12 +23,16 @@ def create_facture():
     if not request.json or not 'title' in request.json:
         abort(400)
     factures = json.loads(db_driver.get_factures())
+
     facture = {
         'id': len(factures),
         'title': request.json['title'],
+        'total': request.json['total'],
         'articles': request.json['articles']
     }
     db_driver.add_facture(facture)
+    if not facture:
+        return abort(409)
     return jsonify({'facture': facture}), 201
 
 
