@@ -5,28 +5,37 @@ import json
 client = MongoClient('localhost', 27017)
 db = client["database"]
 factures = db["factures"]
-#KEYSPACE = 'factures_keyspace'
-#cluster = Cluster()
-#session = cluster.connect()
-#session.row_factory = dict_factory
+
+# KEYSPACE = 'factures_keyspace'
+# cluster = Cluster()
+# session = cluster.connect()
+# session.row_factory = dict_factory
+
+""" facture = {
+    id,
+    title,
+    articles : [
+        {id:,name:, qty}, ...
+    ]
+} """
 
 
-def main():
-    print()
-    
-def add_facture(facture):
-    facture = { "id": facture.id, "title": facture.title }
-    factures.insert_one(facture)
+def add_facture(obj):
+    try:
+        facture = {"id": obj["id"], "title": obj["title"],
+                   "articles": obj["articles"]}
+        factures.insert_one(facture)
+    except Exception as e:
+        print(e)
 
 
 def get_factures():
-    print(dumps(factures.find()))
-    #print (factures.find())
-    return factures.find()
+    # print (factures.find())
+    return dumps(factures.find())
 
 
 def get_facture(id):
-    return factures.find_one({"id": id})
+    return dumps(factures.find_one({"id": id}))
 
 
 if __name__ == "__main__":
