@@ -13,7 +13,8 @@ def get():
 
 @app.route('/most', methods=['GET'])
 def get_most_frequent_product():
-    spark_driver.get_most()
+    res = spark_driver.get_most()
+    return jsonify({"most": res})
 
 
 @app.route('/factures/<string:facture_id>', methods=['GET'])

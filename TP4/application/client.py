@@ -6,6 +6,12 @@ import sys
 parser = argparse.ArgumentParser(
     description='Add new bill and get most frequent product')
 
+parser.add_argument('--server', dest='server_url',
+                    help='server url', default='http://localhost')
+
+parser.add_argument('--port', dest='server_port',
+                    help='port server url', default='5000')
+
 parser.add_argument('--action', dest='action',
                     help='action to perform, ADD or MOST', default='MOST')
 
@@ -50,7 +56,7 @@ def post_request(server_url):
     if len(product_list) > 0:
         print(server_url)
         print(product_list)
-        req = requests.post("http://localhost:5000/factures/", json={
+        req = requests.post(server_url+"/factures/", json={
                             "articles": product_list}, headers={"content-type": "application/json"})
         print(req.status_code)
     else:
@@ -59,10 +65,10 @@ def post_request(server_url):
 
 def get_most_request(server_url):
     try:
-        req = requests.get("http://localhost:5000/most")
+        req = requests.get(server_url+"/most")
         res = req.json()
-        print(json.dumps(
-            sorted(res, key=lambda x: x['freq'], reverse=True), indent=4))
+        print("Most frequent product")
+        print(res)
     except Exception as e:
         print(e)
 
