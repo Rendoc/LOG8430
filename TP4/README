@@ -1,54 +1,75 @@
 Équipe Bravo
 
 Démonstration: https://streamable.com/0fg07
+Git: https://github.com/Rendoc/LOG8430
 
-Utiliser le run.sh dans une vm et le client.py sur votre machine local.
 
 ReadMe
+__________
 
-Prérequis: Avoir Python2 et Python3 ainsi que Pip pour chaque version.
+Installation Automatique:
 
-*Vous pouvez executer run.sh à la racine ou continuer aux étapes suivantes.*
+Étape 0
+  Création de la VM (ubuntu server 18.04)
+  Association du port 5000 de la vm à celui de la machine physique.
+    settings > network > adapter 1 (attached to nat) > advanced > Port fowarding > add new port fowarding rule > HOST PORT = 5000 et GUEST PORT = 5000. 
+    Laisser les autres options par défaut.
 
+Étape 1:
+  Une fois sur la machine virtuelle.
 
-Les versions suivantes doivent être utilisées:
-java : 1.8.x
-Scala : 2.1.1
-Spark: 2.3.1
-MongoDB connector spark : 2.3.1:2.1.1 (voir etape 5)
-Python 2.7 pour l’éxécution de app.py
-Python 3 pour l’éxécution du client.py
+  ```git clone https://github.com/Rendoc/LOG8430.git```
 
+  executer le script LOG8430/TP4/run.sh en tant que sudo.
+    cd LOG8430/TP4/
+    sudo ./run.sh 
 
- Etape 1
-  git clone https://github.com/Rendoc/LOG8430.git
+  Attendre la fin de l'installation
 
-  
- Etape 2
-  Ouvrir un terminal dans le dossier application du TP4 et exécuter les commandes suivantes:
+Étape 2:
+  Sur la machine physique, lancer le client.
 
-    pip install -r requirements.txt
-    pip3 install -r requirements.txt
-
- Etape 3
-  Suivre ce tutoriel pour installer Spark et mettre en place une grappe Spark avec deux esclaves.
-    https://medium.com/ymedialabs-innovation/apache-spark-on-a-multi-node-cluster-b75967c8cb2b?fbclid=IwAR2n3iSsoP-hLe4Mv8bmd6bSnGqXpwnN0s95CusREIgYihKtB8mA1Ym1JNc
-
- Etape 4
-  Le MongoDB Spark Connector sous forme de jar peut etre obtenu a partir du lien suivant: 
-    https://spark-packages.org/package/mongodb/mongo-spark (version 2.3.1-s_2.11)
-
-  Deplacer le jar dans /usr/local/spark/jars    
-
- Etape 5
-  Pour utiliser l’API:
-
-  Executer: python2.7 app.py (serveur), le serveur va démarrer les slaves et faire la gestion de la répartition.
-  Démarrer une instance mongo (locale ou distante)
-    Pour locale, executer: mongo
-    Vous pouvez changer le uri pour la machine mongo dans db_driver.py
-  Executer python3 client.py --action ADD pour ajouter des produits
-  Executer python3 client.py --action MOST pour recuperer les produits les plus fréquents.
+Utilisation du client:
+  Executer ```python3 client.py --action ADD``` pour ajouter des produits
+  Executer ```python3 client.py --action MOST``` pour recuperer les produits les plus fréquents.
   Vous pouvez aussi spécifier le port et le lien du rest API avec --server et --port
-    Exemple: python3 client.py --server http://localhost --port 5000 --action MOST
-    python3 client.py --help pour plus d'information sur les paramètres.
+    Exemple: ```python3 client.py --server http://localhost --port 5000 --action MOST```
+    ```python3 client.py --help``` pour plus d'information sur les paramètres.
+
+
+__________
+
+Installation Manuelle
+
+Étape 0
+  Création de la VM (ubuntu server 18.04)
+  Association du port 5000 de la vm à celui de la machine physique.
+    settings > network > adapter 1 (attached to nat) > advanced > Port fowarding > add new port fowarding rule > HOST PORT = 5000 et GUEST PORT = 5000. 
+    Laisser les autres options par défaut.
+
+Étape 1
+  sudo apt-get install python-pip 
+  sudo apt-get install python2.7
+  sudo apt-get install mongodb
+  sudo apt-get install openjdk-8-jre-headless
+
+Étape 2
+  Démarrer le service mongo
+    service mongodb start
+
+Étape 3
+  Installation des dépendances python du projet
+    pip --no-cache-dir install -r TP4/application/requirements.txt
+
+Étape 4
+  Partir le serveur
+    ```python2.7 application/app.py```
+__________
+
+Utilisation du client:
+  Executer ```python3 client.py --action ADD``` pour ajouter des produits
+  Executer ```python3 client.py --action MOST``` pour recuperer les produits les plus fréquents.
+  Vous pouvez aussi spécifier le port et le lien du rest API avec --server et --port
+    Exemple: ```python3 client.py --server http://localhost --port 5000 --action MOST```
+    ```python3 client.py --help``` pour plus d'information sur les paramètres.
+
