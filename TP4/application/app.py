@@ -11,18 +11,10 @@ def get():
     return jsonify({'factures': json.loads(db_driver.get_factures())})
 
 
-@app.route('/most', methods=['GET'])
+@app.route('/most/', methods=['GET'])
 def get_most_frequent_product():
     res = spark_driver.get_most()
     return jsonify({"most": res})
-
-
-@app.route('/factures/<string:facture_id>', methods=['GET'])
-def get_facture(facture_id):
-    factures = db_driver.get_facture(facture_id)
-    if len(factures) == 0:
-        abort(404)
-    return jsonify({'facture': json.loads(factures)})
 
 
 @app.route('/factures/', methods=['POST'])
