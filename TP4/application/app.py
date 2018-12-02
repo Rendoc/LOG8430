@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, abort, request, url_for
 import db_driver
 import json
+import spark_driver
 
 app = Flask(__name__)
 
@@ -8,6 +9,11 @@ app = Flask(__name__)
 @app.route('/factures/')
 def get():
     return jsonify({'factures': json.loads(db_driver.get_factures())})
+
+
+@app.route('/factures/most_frequent', methods=['GET'])
+def get_most_frequent_product():
+    print()
 
 
 @app.route('/factures/<int:facture_id>', methods=['GET'])
