@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(description='Add new bill and get most frequent
 parser.add_argument('--server', dest='server_url', help='server url', default='localhost')
 parser.add_argument('--port', dest='server_port', help='port server url', default='5000')
 
-parser.add_argument('--action', dest='action', help='action to perform, ADD or MOST', default='ADD')
+parser.add_argument('--action', dest='action', help='action to perform, ADD or MOST', default='MOST')
 
 
 
@@ -53,7 +53,7 @@ def post_request(server_url):
 
 def get_most_request(server_url):
     try:
-        req = requests.get(server_url+"/most")
+        req = requests.get("http://localhost:5000/most")
         res = req.json()
         print(json.dumps(sorted(res, key=lambda x: x['freq'], reverse=True),indent=4))
     except Exception as e:

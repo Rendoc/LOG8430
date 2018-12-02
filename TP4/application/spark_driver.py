@@ -6,26 +6,32 @@ import json
 import re
 import unicodedata
 
-my_spark = pyspark.sql.SparkSession \
-    .builder \
-    .appName("RESTAPI_most_frequent") \
-    .master("192.168.56.101:7077") \
-    .config('spark.jars.packages','org.mongodb.spark:mongo-spark-connector_2.11:2.3.1' ) \
-    .config("spark.mongodb.input.uri", "mongodb://127.0.0.1/conception.factures") \
-    .getOrCreate()
-
-
-
-#.config("spark.mongodb.output.uri", "mongodb://127.0.0.1/conception.factures") \
-df = my_spark.read.format("com.mongodb.spark.sql.DefaultSource").load()
-
 #./bin/spark-submit   --master spark://192.168.56.101:7077   examples/src/main/python/wordcount.py   /usr/local/spark/LICENSE 
 #./bin/spark-submit   --master spark://192.168.56.101:7077   examples/src/main/python/pi.py   12
 
 
 def get_most():
+    print("get most")
+    my_spark = pyspark.sql.SparkSession \
+        .builder \
+        .appName("RESTAPI_most_frequent") \
+        .master("local") \
+        .config("spark.mongodb.input.uri", "mongodb://127.0.0.1/conception.factures") \
+        .config("spark.mongodb.output.uri", "mongodb://127.0.0.1/conception.factures") \
+        .config('spark.jars.packages','org.mongodb.spark:mongo-spark-connector_2.11:2.3.1' )\
+        .config("spark.executor.memory","1G") \
+        .config("spark.driver.memory","5G") \
+        .getOrCreate()\
+
+    df = my_spark.read.format("com.mongodb.spark.sql.DefaultSource").load()
+
+    df.show()
+    #.master("spark://192.168.56.101:7077") \
+
+
+    print("get most &!^!^!")
     transactions = df.groupBy("_id") \
-                .agg(functions.collect_list("items.name").alias("product_name")) \
+                .agg(functions.collect_list("articles.product_name").alias("product_name")) \
                 .rdd \
                 .flatMap(lambda x: x.product_name)
     
