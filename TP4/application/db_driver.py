@@ -3,7 +3,7 @@ from bson.json_util import dumps
 import json
 
 client = MongoClient('localhost', 27017)
-db = client["database"]
+db = client["conception"]
 factures = db["factures"]
 
 # KEYSPACE = 'factures_keyspace'
@@ -12,25 +12,20 @@ factures = db["factures"]
 # session.row_factory = dict_factory
 
 """ facture = {
-    id,
-    title,
-    total
     articles : [
-        {id:,name:, qty, unit_price,product_price_total}, ...
+        {name:,unit_price}, ...
     ]
 } """
 
 
 def add_facture(obj):
+    print("obj db driver:"+dumps(obj))
     try:
-        facture = {"id": obj["id"], "title": obj["title"], "total": obj["total"],
-                   "articles": obj["articles"]}
-
-        if (factures.find_one({"id": obj["id"]})):
-            return None
-        factures.insert_one(facture)
+        facture = {"articles": obj["articles"]}
+        res = factures.insert_one(facture)
     except Exception as e:
         print(e)
+    return res.inserted_id
 
 
 def get_factures():
@@ -41,6 +36,5 @@ def get_factures():
 def get_facture(id):
     return dumps(factures.find_one({"id": id}))
 
-
 if __name__ == "__main__":
-    main()
+    print(add_facture({"articles":[{"product_name":"arthur","product_price":12212}]}))
