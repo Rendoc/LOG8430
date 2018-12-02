@@ -6,10 +6,6 @@ client = MongoClient('localhost', 27017)
 db = client["conception"]
 factures = db["factures"]
 
-# KEYSPACE = 'factures_keyspace'
-# cluster = Cluster()
-# session = cluster.connect()
-# session.row_factory = dict_factory
 
 """ facture = {
     articles : [
@@ -19,7 +15,6 @@ factures = db["factures"]
 
 
 def add_facture(obj):
-    print("obj db driver:"+dumps(obj))
     try:
         facture = {"articles": obj["articles"]}
         res = factures.insert_one(facture)
@@ -29,12 +24,13 @@ def add_facture(obj):
 
 
 def get_factures():
-    # print (factures.find())
     return dumps(factures.find())
 
 
 def get_facture(id):
     return dumps(factures.find_one({"id": id}))
 
+
 if __name__ == "__main__":
-    print(add_facture({"articles":[{"product_name":"arthur","product_price":12212}]}))
+    print(add_facture(
+        {"articles": [{"product_name": "arthur", "product_price": 12212}]}))

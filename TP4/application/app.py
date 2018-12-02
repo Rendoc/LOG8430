@@ -5,6 +5,7 @@ import spark_driver
 
 app = Flask(__name__)
 
+
 @app.route('/factures/')
 def get():
     return jsonify({'factures': json.loads(db_driver.get_factures())})
@@ -15,7 +16,7 @@ def get_most_frequent_product():
     spark_driver.get_most()
 
 
-@app.route('/factures/<int:facture_id>', methods=['GET'])
+@app.route('/factures/<string:facture_id>', methods=['GET'])
 def get_facture(facture_id):
     factures = db_driver.get_facture(facture_id)
     if len(factures) == 0:

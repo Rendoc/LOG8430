@@ -3,12 +3,17 @@ import json
 import argparse
 import sys
 
-parser = argparse.ArgumentParser(description='Add new bill and get most frequent product')
-parser.add_argument('--server', dest='server_url', help='server url', default='localhost')
-parser.add_argument('--port', dest='server_port', help='port server url', default='5000')
+parser = argparse.ArgumentParser(
+    description='Add new bill and get most frequent product')
 
-parser.add_argument('--action', dest='action', help='action to perform, ADD or MOST', default='ADD')
+parser.add_argument('--server', dest='server_url',
+                    help='server url', default='localhost')
 
+parser.add_argument('--port', dest='server_port',
+                    help='port server url', default='5000')
+
+parser.add_argument('--action', dest='action',
+                    help='action to perform, ADD or MOST', default='ADD')
 
 
 def post_request(server_url):
@@ -34,34 +39,36 @@ def post_request(server_url):
                     break
                 elif product_name == QUIT:
                     sys.exit(0)
-                    
+
                 product_price = float(product_price)
             except Exception as e:
                 print(e)
                 raise Exception
-        product_list.append({"product_name":product_name, "price":product_price})
-    
+        product_list.append(
+            {"product_name": product_name, "price": product_price})
+
     if len(product_list) > 0:
         print(server_url)
         print(product_list)
-        req = requests.post("http://localhost:5000/factures/", json = {"articles":product_list}, headers = {"content-type": "application/json"})
+        req = requests.post("http://localhost:5000/factures/", json={
+                            "articles": product_list}, headers={"content-type": "application/json"})
         print(req.status_code)
     else:
         print("no product added")
-
 
 
 def get_most_request(server_url):
     try:
         req = requests.get(server_url+"/most")
         res = req.json()
-        print(json.dumps(sorted(res, key=lambda x: x['freq'], reverse=True),indent=4))
+        print(json.dumps(
+            sorted(res, key=lambda x: x['freq'], reverse=True), indent=4))
     except Exception as e:
         print(e)
 
+
 if __name__ == "__main__":
     args = parser.parse_args()
-
 
     server_url = args.server_url+":"+args.server_port
 
