@@ -20,7 +20,7 @@ Python 2.7 pour l’éxécution de app.py
 Python 3 pour l’éxécution du client.py
 
 
-Etape 1
+ Etape 1
   git clone https://github.com/Rendoc/LOG8430.git
 
   
@@ -30,7 +30,7 @@ Etape 1
     pip install -r requirements.txt
     pip3 install -r requirements.txt
    
- Etape 5
+ Etape 3
     Installer MongoDB avec la commande suivante:
 
      sudo apt-get install mongodb
@@ -43,7 +43,7 @@ Etape 1
   Le MongoDB Spark Connector sous forme de jar peut etre obtenu a partir du lien suivant: 
     https://spark-packages.org/package/mongodb/mongo-spark (version 2.3.1-s_2.11)
 
-Deplacer le jar dans /usr/local/spark/jars    
+  Deplacer le jar dans /usr/local/spark/jars    
 
  Etape 6
   Pour utiliser l’API:
