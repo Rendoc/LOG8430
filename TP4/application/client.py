@@ -15,12 +15,6 @@ parser.add_argument('--port', dest='server_port',
 parser.add_argument('--action', dest='action',
                     help='action to perform, ADD or MOST', default='MOST')
 
-parser.add_argument('--port', dest='server_port',
-                    help='port server url', default='5000')
-
-parser.add_argument('--action', dest='action',
-                    help='action to perform, ADD or MOST', default='ADD')
-
 
 def post_request(server_url):
     print("Enter :q to quit without sending to server")

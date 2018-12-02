@@ -1,7 +1,7 @@
 #!/bin/bash
 
-apt-get install -y python3-pip
+apt-get install -y python-pip
 apt-get install -y mongodb
 service mongodb start
-pip3 install -r application/requirements.txt
-python3 application/app.py
+pip install -r application/requirements.txt
+python2.7 application/app.py
