@@ -1,8 +1,19 @@
-version: '3.2'
+version: '3'
 
 services:
 
   application:
+    container_name: application
     build: ./application
+    volumes:
+      - ./application:/usr/src/app
     ports:
-     - "5000:5000"
+      - "5000:5000"
+
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    volumes:
+      - ~/.mongodb/data/db:/data/db
+    ports:
+      - "27017:27017"

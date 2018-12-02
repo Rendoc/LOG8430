@@ -4,6 +4,9 @@ import json
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return "Hello World"
 
 @app.route('/factures/')
 def get():
@@ -38,4 +41,4 @@ def create_facture():
 
 if __name__ == '__main__':
     # db_driver.main()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
