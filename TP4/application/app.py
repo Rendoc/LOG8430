@@ -1,13 +1,9 @@
 from flask import Flask, jsonify, abort, request, url_for
 import db_driver
 import json
-# import spark_driver
+import spark_driver
 
 app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "Hello World"
 
 @app.route('/factures/')
 def get():
