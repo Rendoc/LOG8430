@@ -1,2 +1,4 @@
 Flask
-cassandra-driver
+pyspark
+pymongo
+numpy
