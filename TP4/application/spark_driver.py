@@ -24,7 +24,7 @@ def get_most():
         .getOrCreate()\
 
     df = my_spark.read.format("com.mongodb.spark.sql.DefaultSource").load()
-
+    
     df.show()
     #.master("spark://192.168.56.101:7077") \
 
@@ -39,12 +39,4 @@ def get_most():
 
     model = FPGrowth.train(transactions, minSupport=0.2, numPartitions=10)
     result = model.freqItemsets().collect()
-    print(result)
-    """ stripped_result = []
-
-    for fi in result:
-        result_line = unicode(fi)
-        words, freq = re.search(r'FreqItemset\(items=\[(.*)\], freq=(\d*)\)', "%s" %result_line).groups()
-        stripped_result.append({'product': words, 'freq': int(freq)})
-    
-    return json.dumps(stripped_result, indent=4, sort_keys=True) """
+    return json.dumps(result)

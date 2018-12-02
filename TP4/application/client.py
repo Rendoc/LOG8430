@@ -55,7 +55,8 @@ def get_most_request(server_url):
     try:
         req = requests.get("http://localhost:5000/most")
         res = req.json()
-        print(json.dumps(sorted(res, key=lambda x: x['freq'], reverse=True),indent=4))
+        print("Most frequent product")
+        print(res)
     except Exception as e:
         print(e)
 
