@@ -24,6 +24,8 @@ Git: https://github.com/Rendoc/LOG8430
 
 ## Étape 3 - Lancer le client
 
+Sur la machine physique:  
+
 Executer ```python3 client.py --action ADD``` pour ajouter des produits.  
 Executer ```python3 client.py --action MOST``` pour recuperer les produits les plus fréquents.  
 Vous pouvez aussi spécifier le port et le lien du rest API avec --server et --port  
@@ -64,6 +66,8 @@ ________________________________________________________________________________
   ```
 
 ## Étape 5 - Lancer le client
+Sur la machine physique:  
+
 Executer ```python3 client.py --action ADD``` pour ajouter des produits  
 Executer ```python3 client.py --action MOST``` pour recuperer les produits les plus fréquents.  
 Vous pouvez aussi spécifier le port et le lien du rest API avec --server et --port  
