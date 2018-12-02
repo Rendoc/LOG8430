@@ -30,24 +30,16 @@ def get_most():
 
     print("get most &!^!^!")
     transactions = df.groupBy("_id") \
-        << << << < HEAD
-    .agg(functions.collect_list("items.name").alias("product_name")) \
+        .agg(functions.collect_list("articles.product_name").alias("product_name")) \
         .rdd \
         .flatMap(lambda x: x.product_name)
 
+    transactions.collect()
 
-== == == =
-.agg(functions.collect_list("articles.product_name").alias("product_name")) \
-    .rdd \
-    .flatMap(lambda x: x.product_name)
-
->>>>>> > 63ec6b281acf3dc426ec3e76c2e5482ce1ce7587
-transactions.collect()
-
-model = FPGrowth.train(transactions, minSupport=0.2, numPartitions=10)
-result = model.freqItemsets().collect()
-print(result)
-""" stripped_result = []
+    model = FPGrowth.train(transactions, minSupport=0.2, numPartitions=10)
+    result = model.freqItemsets().collect()
+    print(result)
+    """ stripped_result = []
 
     for fi in result:
         result_line = unicode(fi)
