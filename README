@@ -2,6 +2,8 @@
 
 Démonstration: https://streamable.com/0fg07
 
+Utilisé le run.sh dans une vm et le client.py sur votre machine.
+
 ReadMe
 
 Prérequis: Avoir Python2 et Python3 ainsi que Pip pour chaque version.
