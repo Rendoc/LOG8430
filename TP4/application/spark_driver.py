@@ -3,8 +3,6 @@ import pyspark
 from pyspark.sql import functions
 from pyspark.mllib.fpm import FPGrowth
 import json
-import re
-import unicodedata
 
 
 def get_most():
