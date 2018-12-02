@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, abort, request, url_for
 import db_driver
 import json
-import spark_driver
+# import spark_driver
 
 app = Flask(__name__)
 
@@ -14,9 +14,9 @@ def get():
     return jsonify({'factures': json.loads(db_driver.get_factures())})
 
 
-@app.route('/factures/most_frequent', methods=['GET'])
+@app.route('/most', methods=['GET'])
 def get_most_frequent_product():
-    print()
+    spark_driver.get_most()
 
 
 @app.route('/factures/<int:facture_id>', methods=['GET'])
@@ -29,22 +29,12 @@ def get_facture(facture_id):
 
 @app.route('/factures/', methods=['POST'])
 def create_facture():
-    if not request.json or not 'title' in request.json:
+    if not request.json:
         abort(400)
-    factures = json.loads(db_driver.get_factures())
-
-    facture = {
-        'id': len(factures),
-        'title': request.json['title'],
-        'total': request.json['total'],
-        'articles': request.json['articles']
-    }
-    db_driver.add_facture(facture)
-    if not facture:
-        return abort(409)
-    return jsonify({'facture': facture}), 201
+    res = db_driver.add_facture(request.json)
+    print("return : "+str(res))
+    return jsonify({'facture': str(res)}), 201
 
 
 if __name__ == '__main__':
-    # db_driver.main()
     app.run(host='0.0.0.0', port=5000, debug=True)

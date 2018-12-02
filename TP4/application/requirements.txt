@@ -1,3 +1,4 @@
 Flask
 pyspark
-pymongo==3.4.0
+pymongo
+numpy
