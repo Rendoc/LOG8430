@@ -12,3 +12,5 @@ my_spark = pyspark.sql.SparkSession \
 
 df = my_spark.read.format("com.mongodb.spark.sql.DefaultSource").load()
 df.printSchema()
+
+#./bin/spark-submit   --master spark://192.168.56.101:7077   examples/src/main/python/wordcount.py   /usr/local/spark/LICENSE 
