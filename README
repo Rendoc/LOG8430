@@ -29,23 +29,18 @@ Python 3 pour l’éxécution du client.py
 
     pip install -r requirements.txt
     pip3 install -r requirements.txt
-   
+
  Etape 3
-    Installer MongoDB avec la commande suivante:
-
-     sudo apt-get install mongodb
-
- Etape 4
   Suivre ce tutoriel pour installer Spark et mettre en place une grappe Spark avec deux esclaves.
     https://medium.com/ymedialabs-innovation/apache-spark-on-a-multi-node-cluster-b75967c8cb2b?fbclid=IwAR2n3iSsoP-hLe4Mv8bmd6bSnGqXpwnN0s95CusREIgYihKtB8mA1Ym1JNc
 
- Etape 5
+ Etape 4
   Le MongoDB Spark Connector sous forme de jar peut etre obtenu a partir du lien suivant: 
     https://spark-packages.org/package/mongodb/mongo-spark (version 2.3.1-s_2.11)
 
   Deplacer le jar dans /usr/local/spark/jars    
 
- Etape 6
+ Etape 5
   Pour utiliser l’API:
 
   Executer: python2.7 app.py (serveur), le serveur va démarrer les slaves et faire la gestion de la répartition.
