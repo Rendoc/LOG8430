@@ -29,13 +29,22 @@ def post_request(server_url):
             sys.exit(0)
         else:
             try:
-                product_price = float(input("Product price (Double)"))
+                product_price = input("Product price (Double):")
+                if product_price == SAVE_AND_QUIT:
+                    break
+                elif product_name == QUIT:
+                    sys.exit(0)
+                    
+                product_price = float(product_price)
             except Exception as e:
                 print(e)
+                raise Exception
         product_list.append({"product_name":product_name, "price":product_price})
     
     if len(product_list) > 0:
-        req = requests.post(server_url, json = {"Facture":{"Articles":product_list}}, headers = {"content-type": "application/json"})
+        print(server_url)
+        print(product_list)
+        req = requests.post("http://localhost:5000/factures/", json = {"articles":product_list}, headers = {"content-type": "application/json"})
         print(req.status_code)
     else:
         print("no product added")
