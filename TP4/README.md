@@ -94,8 +94,9 @@ et que la quantité de travaille pour arriver à un API avec les 3 routes dont n
 ## Base de données
 
 Pour la base de données, nous avons utilisé MongoDB puisque nous avions déjà travaillé avec cette technologie auparavant et que nous savions qu'elle
-est simple d'utilisation. L'accès aux données sous format JSON nous permet de facilement afficher ces données dans notre navigateur ainsi que de les
-manipuler aisément. De plus, nous avions accès à pymongo, un driver en python qui nous permet d'intégrer facilement MongoDB à notre application.
+est simple d'utilisation. Nous traitons chaque facture comme un document, donc une base de donnée avec un type d'organisation document était favorable.
+L'encodage des fichiers sous format JSON nous permet de facilement afficher ces données dans notre navigateur ainsi que de les
+manipuler aisément. Il est aussi utile de pouvoir récupérer les documents par rapport à leurs attributs. Finalement, nous avions accès à pymongo, un driver en python qui nous permet d'intégrer facilement MongoDB à notre application.
 
 ## Architecture
 
