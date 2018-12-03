@@ -1,9 +1,9 @@
 Équipe Bravo
 
-Gabriel Lemyre
-Renaud Bissonnette
-Evelyne Lafontaine-Michel
-Tony Trau
+Gabriel Lemyre  
+Renaud Bissonnette  
+Evelyne Lafontaine-Michel  
+Tony Trau  
 
 Démonstration: https://streamable.com/0fg07  
 Git: https://github.com/Rendoc/LOG8430
