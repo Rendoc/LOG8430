@@ -113,3 +113,5 @@ Démonstration: https://streamable.com/knhqe
 
 Dans la démonstration, on voit nos 3 machines virtuelles, la soumission d'une job venant de notre API qui ne finie jamais.
 
+Configuration du cluster master slave: https://medium.com/ymedialabs-innovation/apache-spark-on-a-multi-node-cluster-b75967c8cb2b
+
