@@ -79,3 +79,27 @@ Vous pouvez aussi spécifier le port et le lien du rest API avec --server et --p
 Exemple: ```python3 client.py --server http://localhost --port 5000 --action MOST```  
 ```python3 client.py --help``` pour plus d'information sur les paramètres.  
 
+_________________________________________________________________________________________________
+
+
+# Justifications des technologies
+
+## API et client REST
+
+Pour l'API et le client REST, nous avons choisi d'utiliser le langage Python puisque c'est un langage simple avec lequel nous étions déjà familier.
+Nous avons utiliser le framework Flask afin de créer notre API et de définir les routes puisque c'est une framework extrêmement facile à utiliser
+et que la quantité de travaille pour arriver à un API avec les 3 routes dont nous avions besoin est minime. De plus, il existe plusieurs driver facile
+à utiliser pour les autres technologies nécessaires à ce projet, soit un driver MongoDB et un driver Spark.
+
+## Base de données
+
+Pour la base de données, nous avons utilisé MongoDB puisque nous avions déjà travaillé avec cette technologie auparavant et que nous savions qu'elle
+est simple d'utilisation. L'accès aux données sous format JSON nous permet de facilement afficher ces données dans notre navigateur ainsi que de les
+manipuler aisément. De plus, nous avions accès à pymongo, un driver en python qui nous permet d'intégrer facilement MongoDB à notre application.
+
+## Architecture
+
+Nous avons opté pour une architecture à une seule machine virtuelle puisque nous avons éprouvé beacoup de difficultés à faire fonctionner Spark sur une
+architecture déployée sur plusieurs machines virtuelles. En effet, nous étions capable d'envoyer les jobs aux VM avec le master et les slaves, mais l'exécution
+de ces jobs restait toujours prise et ne finissait jamais. Après plusieurs heures de débogage, nous avons opté de simplement faire une architecture à
+une machine virtuelle.
