@@ -103,3 +103,13 @@ Nous avons opté pour une architecture à une seule machine virtuelle puisque no
 architecture déployée sur plusieurs machines virtuelles. En effet, nous étions capable d'envoyer les jobs aux VM avec le master et les slaves, mais l'exécution
 de ces jobs restait toujours prise et ne finissait jamais. Après plusieurs heures de débogage, nous avons opté de simplement faire une architecture à
 une machine virtuelle.
+
+Voici une démonstration de notre architecture avec le cluster Master - slave dans 3 vm différentes. Comme mentionné plus haut, la job spark reste stuck au stage 0.
+Le cluster fonctionne sans problème pour les jobs d'examples, trouvé dans spark/examples/python, le calcul de PI ou bien le wordcount fonctionne très bien.
+On voit aussi dans la vidéo la soumission du flux de travail ainsi que les statisituqes sur celle-ci. Le problème que nous avons rencontré, selon les ressources 
+sur internet est le manque de mémoire et un problème de ressource dans la configuration de nos machines slaves.
+
+Démonstration: https://streamable.com/knhqe
+
+Dans la démonstration, on voit nos 3 machines virtuelles, la soumission d'une job venant de notre API qui ne finie jamais.
+
