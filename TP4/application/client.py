@@ -35,9 +35,7 @@ def post_request(server_url):
         else:
             try:
                 product_price = input("Product price (Double):")
-                if product_price == SAVE_AND_QUIT:
-                    break
-                elif product_name == QUIT:
+                if product_price == QUIT:
                     sys.exit(0)
 
                 product_price = float(product_price)
